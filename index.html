@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>黑洞节点 · Cottie</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      background:#000;color:#aaa;font-family:monospace;
+      display:flex;justify-content:center;align-items:center;
+      height:100vh;flex-direction:column;text-align:center;
+    }
+    .hole{
+      width:80px;height:80px;border-radius:50%;
+      background:radial-gradient(circle,#000 20%,#111 70%,transparent 71%);
+      box-shadow:0 0 30px #0af;
+      position:relative;margin-bottom:25px;
+    }
+    .hole::after{
+      content:'';position:absolute;top:-10px;left:-10px;
+      width:100px;height:100px;border:2px dashed #0af;
+      border-radius:50%;animation:spin 4s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .box{
+      background:rgba(0,0,0,.8);padding:20px 35px;
+      border:1px solid #333;border-radius:6px;max-width:400px;
+    }
+    h2{letter-spacing:2px;color:#fff;font-weight:normal;}
+    .note{font-size:13px;color:#777;margin-top:12px;line-height:1.6;}
+  </style>
+</head>
+<body>
+  <div class="hole"></div>
+  <div class="box">
+    <h2> 黑洞路由激活</h2>
+    <p style="margin:12px 0;color:#ccc;">请求已被灵流量追势捕获</p>
+    <div class="note" id="fp"></div>
+  </div>
+  <script>
+    (function(){
+      var fp=document.getElementById('fp');
+      fp.innerHTML='UA: '+navigator.userAgent.substring(0,50)+'<br>'+
+                  '平台: '+navigator.platform+' | 指纹: '+
+                  btoa(navigator.userAgent).substring(0,10);
+      window.addEventListener('beforeunload',function(e){
+        e.preventDefault();e.returnValue='黑洞追踪未完成，确定离开？';
+      });
+    })();
+  </script>
+</body>
+</html>
