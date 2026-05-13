@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>404 · 黑洞节点</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      background:#000;color:#aaa;font-family:monospace;
+      display:flex;justify-content:center;align-items:center;
+      height:100vh;flex-direction:column;text-align:center;
+    }
+    .hole{
+      width:80px;height:80px;border-radius:50%;
+      background:radial-gradient(circle,#200 20%,#300 70%,transparent 71%);
+      box-shadow:0 0 30px #f44;
+      position:relative;margin-bottom:25px;
+    }
+    .hole::after{
+      content:'';position:absolute;top:-10px;left:-10px;
+      width:100px;height:100px;border:2px dashed #f44;
+      border-radius:50%;animation:spin 4s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .box{
+      background:rgba(0,0,0,.8);padding:20px 35px;
+      border:1px solid #433;border-radius:6px;max-width:400px;
+    }
+    h2{letter-spacing:2px;color:#fff;font-weight:normal;}
+    .note{font-size:13px;color:#777;margin-top:12px;line-height:1.6;}
+  </style>
+</head>
+<body>
+  <div class="hole"></div>
+  <div class="box">
+    <h2>🕳️ 404 资源已坠入黑洞</h2>
+    <p style="margin:12px 0;color:#ccc;">目标不存在，请求已被标记</p>
+    <div class="note" id="fp"></div>
+  </div>
+  <script>
+    (function(){
+      var fp=document.getElementById('fp');
+      fp.innerHTML='路径: '+window.location.pathname+'<br>'+
+                  '来源: '+(document.referrer||'直接')+' | ID: '+
+                  Math.random().toString(36).substring(2,8);
+      window.addEventListener('beforeunload',function(e){
+        e.preventDefault();e.returnValue='黑洞分析未完成，离开将触发更严格审查。';
+      });
+    })();
+  </script>
+</body>
+</html>
